@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
 
 # HTML Parser / Extractor
-gem 'hpricot'
+gem 'nokogiri'
+
+# Relative date/time parser
+gem 'chronic'
