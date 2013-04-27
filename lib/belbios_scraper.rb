@@ -52,7 +52,7 @@ class BelbiosScraper
       if detail_mapping
         detail_sym = detail_mapping.to_sym
       else
-        detail_sym = detail_sym.gsub(/:/, '').downcase.to_sym
+        detail_sym = row.at_css('th').content.gsub(/:/, '').downcase.to_sym
       end
 
       movie_details[detail_sym] = process_detail(detail_sym, row)
