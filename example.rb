@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
-require 'belbios-scraper'
+require 'belbios_scraper'
+require 'json'
 
 def runtime_in_minutes runtime
   runtime.gsub!(/uur/, 'hours')
@@ -11,7 +12,6 @@ def runtime_in_minutes runtime
 end
 
 scraper = BelbiosScraper.new
-scraper.uri = File.join(File.expand_path(File.join(File.dirname(__FILE__), '..')), 'spec', 'fixtures', 'index.html')
 scraper.movie_detail_mapping = {
   "Releasedatum:" => 'release_date',
   "Duur:" => 'runtime',
@@ -20,7 +20,7 @@ scraper.movie_detail_mapping = {
   "Productiejaar:" => 'production_year',
   "Taal:" => 'language'
 }
-scraper.pages = 2
+scraper.pages = 1
 scraper.movie_detail_proc = {
   :genres => Proc.new do |td|
     detail = []
@@ -29,9 +29,9 @@ scraper.movie_detail_proc = {
     end
     detail
   end,
-  :runtime => Proc.new {|td| runtime_in_minutes(td.content) },
+  :runtime => Proc.new {|runtime| runtime_in_minutes(runtime.content) },
   :release_date => Proc.new {|release_date| Date.parse(release_date.content)},
   :production_year => Proc.new {|production_year| production_year.content.to_i}
 }
 
-scraper.init
+puts scraper.init.to_json

@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'belbios/scraper/version'
+require 'belbios_scraper/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "belbios-scraper"
-  spec.version       = Belbios::Scraper::VERSION
+  spec.version       = BelbiosScraper::VERSION
   spec.authors       = ["Koen Punt"]
   spec.email         = ["koen@koenpunt.nl"]
   spec.description   = %q{Belbios index scraper}
