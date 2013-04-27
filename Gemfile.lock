@@ -1,12 +1,21 @@
+PATH
+  remote: .
+  specs:
+    belbios-scraper (0.0.1)
+      chronic (~> 0.9)
+      nokogiri (~> 1.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
     chronic (0.9.1)
     nokogiri (1.5.5)
+    rake (10.0.4)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  chronic
-  nokogiri
+  belbios-scraper!
+  bundler (~> 1.3)
+  rake

@@ -1,7 +1,4 @@
 source 'https://rubygems.org'
 
-# HTML Parser / Extractor
-gem 'nokogiri'
-
-# Relative date/time parser
-gem 'chronic'
+# Specify your gem's dependencies in belbios-scraper.gemspec
+gemspec
