@@ -26,7 +26,7 @@ class BelbiosScraper
         movie_uri = a.get_attribute('href')
         movie = {
           :title => a.content,
-          :img => data.at_css('.movie-wide-poster img').get_attribute('src'),
+          :thumbnail => data.at_css('.movie-wide-poster img').get_attribute('src'),
           :description => data.at_css('.movie-wide-info > p').content,
           :url => movie_uri
         }
@@ -39,11 +39,12 @@ class BelbiosScraper
 
   def fetch_movie_details uri
     doc = Nokogiri::HTML(open(uri))
-    info_doc = doc.css('#informatie .movie-detail-info')
-    detail_rows = info_doc.css('.movie-detail-table tr')
+    info_doc = doc.css('#informatie')
+    detail_rows = info_doc.css('.movie-detail-info .movie-detail-table tr')
 
     movie_details = {
-      :full_description => info_doc.at_css('> p').content
+      :full_description => info_doc.at_css('.movie-detail-info > p').content,
+      :image => info_doc.at_css('.movie-detail-poster .movie-poster a').get_attribute('href')
     }
 
     detail_rows.each do |row|
